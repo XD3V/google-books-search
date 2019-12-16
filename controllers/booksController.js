@@ -2,9 +2,9 @@
 const db = require("../modeks");
 
 // Defining methods for the booksController
-module.exports ={
+module.exports = {
     // defing the method for finding all books
-    findAll: function(req, res){
+    findAll: function (req, res) {
         db.Book
             .find(req.query)
             .sort({ date: -1 })
@@ -12,18 +12,25 @@ module.exports ={
             .catch(err => res.status(422).json(err));
     },
 
-    findById: function(req, res) {
+    findById: function (req, res) {
         db.Book
             .findById(req.params.id)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
 
-    create: function(req, res) {
+    create: function (req, res) {
         db.Book
-        .create(req.body)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
-    }
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
+    update: function (req, res) {
+        db.Book
+            .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
 
 }
