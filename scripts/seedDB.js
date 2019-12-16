@@ -6,7 +6,7 @@ const db = require
 
 mongoose.connect(
     process.env.MONGODB_URI ||
-    ""
+    "mongodb+srv://admin:googleBooksApp@cluster0-2txa4.mongodb.net/test?retryWrites=true&w=majority"
 );
 
 const bookSeed = [

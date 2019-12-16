@@ -1,5 +1,5 @@
 // importing the schema file from the models folder
-const db = require("../modeks");
+const db = require("../models/books");
 
 // Defining methods for the booksController
 module.exports = {
