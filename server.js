@@ -17,9 +17,19 @@ if (process.env.NODE_ENV === "production"){
 app.use(routes)
 
 // Connect to the Mongo Db
-mongoose.connect(process.env.MONGOD_URI || "mongodb+srv://admin:googleBooksApp@cluster0-2txa4.mongodb.net/test?retryWrites=true&w=majority")
+console.log("Connecting to Mongoose");
+// mongoose.connect(process.env.MONGOD_URI || "mongodb+srv://admin:googleBooksApp@cluster0-2txa4.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://admin:googleBooksApp@cluster0-2txa4.mongodb.net/test?retryWrites=true&w=majority", {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+})
+    .then(() => console.log("Connected to MongoDB Atlas"))
+    .catch(err => {
+        console.log(err);
+        console.log("Could not connect");
+    });
 
 // Start the API server
 app.listen(PORT, function(){
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-})
+});
