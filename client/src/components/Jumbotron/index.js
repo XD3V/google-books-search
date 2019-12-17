@@ -1,6 +1,6 @@
 import React from "react";
 
-// This JumboTron component allows us to use a bootstrap Jumbotron without worrying about class names
+// This Jumbotron component allows us to use a bootstrap Jumbotron without worrying about class names
 function Jumbotron({ children }) {
   return (
     <div
