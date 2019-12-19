@@ -6,10 +6,12 @@ const Schema = mongoose.Schema;
 // creating a schema file for books to hold the information in mongodb accordingly to its title, image, date, etc. 
 const bookSchema = new Schema({
     title: { type: String, required: true},
-    authors: {type: String,  required: true},
+    author: {type: String,  required: true},
     description: {type: String},
     image: {type: String},
-    link: {type: String,  required: true},
+    link: {type: String,
+        // required: true
+    },
     date: {type: Date, default: Date.now}
 });
 

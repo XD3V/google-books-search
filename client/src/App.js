@@ -4,11 +4,15 @@ import Books from "./pages/Books";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import "./App.css"
+import Background from "./components/Background"
 
 function App() {
   return (
     <Router>
-      <div>
+     
+      <div> 
+        <Background/>
         <Nav />
         <Switch>
           <Route exact path="/" component={Books} />
