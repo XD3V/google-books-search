@@ -1,6 +1,6 @@
 // dependencies
 
-import React, { Component } from "react";
+import React, { useState, useEffect  } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
@@ -9,16 +9,18 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import BackgroundImg from "../components/Background";
+import Hooks from "../utils/Hook";
 
-class Books extends Component {
-    state = {
+function Books() {
+const [bookState, seBookState]= useState({
         books:[],
         title: "",
         author: "",
-        synopsis: ""
-    };
-
-    componentDidCatch() {
+        synopsis: "",
+        link:"",
+        image:""
+})
+    componentDidMount() {
         this.loadBooks();
     };
 
@@ -26,7 +28,8 @@ class Books extends Component {
     loadBooks = () => {
         API.getBooks()
         .then(res =>
-            this.setState({ books: res.data, title:"", author: "", synopsis: ""})
+          {console.log(res);
+            this.setState({ books: res.data, title:"", author: "", synopsis: "",url:"",image:""})}
         )
         .catch(err => console.log(err))    
     };
@@ -52,7 +55,9 @@ class Books extends Component {
             API.saveBooks({
                 title: this.state.title,
                 author: this.state.author,
-                synopsis: this.state.synopsis
+                synopsis: this.state.synopsis,
+                image: this.state.image,
+                link: this.state.link
             })
             .then(res => this.loadBooks())
             .catch(err => console.log(err));
@@ -75,18 +80,6 @@ class Books extends Component {
                 onChange={this.handleInputChange}
                 name="title"
                 placeholder="Title (required)"
-              />
-              <Input
-                value={this.state.author}
-                onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
-              />
-              <TextArea
-                value={this.state.synopsis}
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
               />
               <FormBtn
                 disabled={!(this.state.author && this.state.title)}
@@ -124,7 +117,7 @@ class Books extends Component {
 
         
     }
+  }
 
-}
 
 export default Books;

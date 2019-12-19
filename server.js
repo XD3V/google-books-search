@@ -1,9 +1,9 @@
 // Setting up dependencies
 const express = require("express");
-
-const mongoose = require("mongoose");
-const routes = require("./routes");
 const app = express();
+
+const routes = require("./routes");
+
 const PORT = process.env.PORT || 3001;
 
 //Define middleware here
@@ -17,6 +17,7 @@ if (process.env.NODE_ENV === "production"){
 app.use(routes)
 
 // Connect to the Mongo Db
+const mongoose = require("mongoose");
 console.log("Connecting to Mongoose");
 // mongoose.connect(process.env.MONGOD_URI || "mongodb+srv://admin:googleBooksApp@cluster0-2txa4.mongodb.net/test?retryWrites=true&w=majority", {
 mongoose.connect("mongodb+srv://admin:googleBooksApp@cluster0-2txa4.mongodb.net/test?retryWrites=true&w=majority", {
